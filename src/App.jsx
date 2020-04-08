@@ -5,14 +5,14 @@ import Service from "./services/getSimilar";
 const service = new Service();
 
 function App() {
+  
   const [search, setSearch] = useState("");
   const [result, setResult] = useState();
+
   const handleChange = ({ target }) => setSearch(target.value);
 
-  const handleSubmit = () => {
-    service.getSimilar(search).then(elm => setResult(elm));
-    console.log(result)
-  };
+  const handleSubmit = () => service.getSimilar(search).then(elm => setResult(elm)).catch(err => console.log(err))
+  
 
   const classes = useStyles();
 
