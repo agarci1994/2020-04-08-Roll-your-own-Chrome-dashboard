@@ -3,17 +3,12 @@ import axios from "axios";
 export default class Services {
     constructor() {
         this.services = axios.create({
-            baseURL: `https://tastedive.com/`,
-            withCredentials: true,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
+            baseURL: `https://cors-anywhere.herokuapp.com/https://tastedive.com`,
         })
     }
 
-    getSimilar = () => this.services.get(`api/similar?info=1&q=Harry%20Potter`)
-    .then(elm => console.log(elm))
+    getSimilar = search => this.services.get(`/api/similar?info=1&q=${search}`)
+    .then(elm => elm.data.Similar.Results)
     .catch(err => console.log(err))
 }
 
