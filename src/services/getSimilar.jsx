@@ -5,11 +5,14 @@ export default class Services {
         this.services = axios.create({
             baseURL: `https://tastedive.com/`,
             withCredentials: true,
-            headers: { 'Access-Control-Allow-Origin': '*' }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
         })
     }
 
-    getSimilar = () => this.services.get(`api/similar?info=1&q=Harry%20Potter&k=363390-Alejandr-H8ZN1837`)
+    getSimilar = () => this.services.get(`api/similar?info=1&q=Harry%20Potter`)
     .then(elm => console.log(elm))
     .catch(err => console.log(err))
 }
