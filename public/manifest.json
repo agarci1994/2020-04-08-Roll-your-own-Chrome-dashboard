@@ -1,0 +1,22 @@
+{
+  "short_name": "SearchFavorites",
+  "name": "Search similar artist",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "SimilarArtist"
+  },
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "manifest_version": 2,
+  "version": "1.0",
+  "permissions": [
+    "https://tastedive.com"
+  ],
+  "content_security_policy": "script-src 'self' 'sha256-PK0+oytTbAxJr7VkjNUTdksxXhVyVzLKR6UrHreRNAA='; object-src 'self'",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+
+}
