@@ -7,7 +7,7 @@ export default class Services {
         })
     }
 
-    getSimilar = search => this.services.get(`/api/similar?info=1&q=${search}`)
+    getSimilar = search => this.services.get(`/api/similar?info=1&q=${search}&k=363390-Alejandr-H8ZN1837`)
     .then(elm => elm.data.Similar.Results)
     .catch(err => console.log(err))
 }

@@ -5,14 +5,17 @@ import Service from "./services/getSimilar";
 const service = new Service();
 
 function App() {
-  
   const [search, setSearch] = useState("");
   const [result, setResult] = useState();
-
   const handleChange = ({ target }) => setSearch(target.value);
 
-  const handleSubmit = () => service.getSimilar(search).then(elm => setResult(elm)).catch(err => console.log(err))
-  
+  const handleSubmit = () => {
+    service
+      .getSimilar(search)
+      .then(elm => setResult(elm))
+      .catch(err => console.log(err));
+    console.log(result);
+  };
 
   const classes = useStyles();
 
@@ -36,9 +39,15 @@ function App() {
         </Button>
       </form>
       <div>
-        {result && (result.map(elm => (
-          <h3>{elm.Name}</h3>
-        )))}
+        {result &&
+          result.map(elm => (
+            <>
+              <h3>{elm.Name}</h3>
+              <p>{elm.wTeaser}</p>
+              <a href={elm.wUrl}>More info</a>
+              <iframe width="640" height="360" src={elm.yUrl} frameborder="0" allowfullscreen />
+            </>
+          ))}
       </div>
     </div>
   );
