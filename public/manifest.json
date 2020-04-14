@@ -5,6 +5,11 @@
     "default_popup": "index.html",
     "default_title": "SimilarArtist"
   },
+  "icons": {
+    "128": "128.svg",
+    "48": "128.svg",
+    "16": "128.svg"
+  },
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
