@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, FormControl, Input } from "@material-ui/core";
+import { Button, FormControl, Input, Grid } from "@material-ui/core";
+import Result from "./components/result";
 import Service from "./services/getSimilar";
+
 const service = new Service();
 
 function App() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState();
-  const handleChange = ({ target }) => setSearch(target.value);
+  const handleChange = ({ target: { value } }) => setSearch(value);
 
   const handleSubmit = () => {
     service
@@ -20,7 +22,7 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className="App">
+    <div className={classes.main}>
       <form className={classes.root}>
         <FormControl fullWidth margin="normal">
           <Input
@@ -38,17 +40,9 @@ function App() {
           Send
         </Button>
       </form>
-      <div>
-        {result &&
-          result.map(elm => (
-            <>
-              <h3>{elm.Name}</h3>
-              <p>{elm.wTeaser}</p>
-              <a href={elm.wUrl}>More info</a>
-              <iframe width="640" height="360" src={elm.yUrl} frameborder="0" allowfullscreen />
-            </>
-          ))}
-      </div>
+      <Grid container spacing={3}>
+        {result && result.map(elm => <Result {...elm} />)}
+      </Grid>
     </div>
   );
 }
@@ -56,7 +50,9 @@ function App() {
 export default App;
 
 const useStyles = makeStyles(theme => ({
+  main: { margin: "100px" },
   root: {
+    marginBottom: "50px",
     "& > *": {
       margin: theme.spacing(1),
       width: "25ch"
